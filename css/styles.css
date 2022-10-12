@@ -479,6 +479,13 @@ mark,
 .img-fluid {
   max-width: 100%;
   height: auto;
+
+}
+
+.img-flag{
+  height: 1.5rem;
+  display:inline-block;
+  width: 1.5rem;
 }
 
 .img-thumbnail {
