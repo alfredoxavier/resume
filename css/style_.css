@@ -1,11 +1,13 @@
 body {
-    /* Mudar cor do fundo */
-    background-color: #062c33!important;
-    /* Mudar família da fonte */
+    background-color: rgba(6,44,51,0.2)
+    opacity: 0.1;
     font-family:'Montserrat', sans-serif!important;
-    /* Mudar cor da fonte */
     color: #ffffff!important;
-    /* Não alterar */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image:url("../assets/img/wallpaper2.jpg");
     font-size: 1.1rem!important;
     line-height: 1.5rem!important;
     text-align: center!important;
@@ -24,6 +26,22 @@ body {
 .photo img {
     border-radius: 50%;
     max-width: 250px;
+}
+
+/* GLASS */
+
+.glass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255,255,255,0));
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 32px
 }
 
 /* TITLE */
@@ -46,11 +64,8 @@ body {
 
 /* BOTÃO */
 .botao {
-    /* Mudar cor da fonte do botão */
     color: #000000;
-    /* Mudar cor de fundo do botão */
     background-color: #ffffff;
-    /* Não alterar */
     max-width: 100%;
     min-height: 2.2rem;
     vertical-align: middle;
@@ -63,33 +78,10 @@ body {
 }
 
 .botao:hover {
-    /* Cor do texto e fundo - Quando tem link */
     color: #ffffff;
-    background-color: #127587;
+    background-color: #ca6f4e;
 }
 
-/* SOCIAL */
-.social {
-    margin-bottom: 40px;
-}
-.social a {
-    text-decoration: none;
-    /* Mudar cor da fonte do ícone */
-    color: #ffffff;
-}
-
-.social a:hover {
-    /* Cor do ícone - Quando tem link */
-    text-decoration: none;
-    color: #e7323f;
-}
-
-.social ul li {
-    display: inline;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px;
-}
 
 /* FOOTER */
 footer {
