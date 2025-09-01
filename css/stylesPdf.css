@@ -5,11 +5,17 @@
 
 @page {
   size: A4;
-  margin-top: 0mm;
-  margin-bottom: 4mm;
-  margin-left: 0mm;
-  margin-right: 5mm;
+  /* suas margens atuais */
+  margin: 0mm 5mm 4mm 0mm; /* top right bottom left */
 }
+
+/* Força quebra antes da seção */
+.page-break {
+  page-break-before: always;
+  break-before: page;
+  margin-top: 10mm;  /* espaço no topo da segunda página */
+}
+
 
 /* ===== Corpo e fontes ===== */
 html, body {
@@ -113,7 +119,7 @@ section.resume-section .resume-section-content {
 hr {
   border: 0;
   border-top: 1px solid #e5e7eb;
-  margin: 0px 0;
+  margin: 0;
 }
 hr.my-2 { margin: 12px 0 !important; }
 
@@ -170,14 +176,17 @@ a[href]:after {
    PRINT: manter sidebar no PDF
    =========================== */
 @media print {
-  /* Mostra e posiciona a sidebar dentro das margens A4 */
+  /* Mostra e posiciona a sidebar dentro da área imprimível (sem margens) */
   .contactNav {
     display: block !important;
     position: fixed;
-    height: calc(100vh); /* 14mm top + 16mm bottom */
+    top: 0mm;          /* @page top = 0mm */
+    left: 0mm;         /* @page left = 0mm */
+    width: 60mm;       /* largura fixa em mm para estabilidade no A4 */
+    height: 100vh;     /* altura da página */
     background: #062c33;
     color: #fff;
-    box-shadow: none; /* sombras não ajudam no print */
+    box-shadow: none;  /* sombras não ajudam no print */
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -189,13 +198,22 @@ a[href]:after {
     width: 0.4mm; height: 100%;
     background: rgba(0,0,0,.22);
   }
+
   /* Recuo do conteúdo para não sobrepor a sidebar no print */
   body {
-    padding-left: calc(60mm + 8mm) !important; /* 60mm barra + respiro */
+    padding-left: calc(60mm + 6mm) !important; /* 60mm barra + respiro */
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
+
   /* Ajustes de espaçamento no conteúdo impresso */
-  section.resume-section { padding: 10mm 0 8mm; }
-  .container-fluid { padding: 0; }
+  .container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+  }
+  section.resume-section { padding: 6mm 0 6mm !important; }
 
   /* Evita quebras ruins */
   h2, h3 { page-break-after: avoid; }
