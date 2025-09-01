@@ -5,7 +5,10 @@
 
 @page {
   size: A4;
-  margin: 14mm 14mm 16mm; /* top, right/left, bottom */
+  margin-top: 0mm;
+  margin-bottom: 4mm;
+  margin-left: 0mm;
+  margin-right: 5mm;
 }
 
 /* ===== Corpo e fontes ===== */
@@ -95,7 +98,9 @@ h3 { font-size: 13pt; }
 }
 
 /* ===== Seções / conteúdo ===== */
-section.resume-section { padding: 1rem; }
+section.resume-section {
+  padding: 0.5rem 1rem; /* y = 0.5rem, x = 1rem */
+}
 section.resume-section .resume-section-content {
   width: 100%;
   text-align: justify;
@@ -108,7 +113,7 @@ section.resume-section .resume-section-content {
 hr {
   border: 0;
   border-top: 1px solid #e5e7eb;
-  margin: 12px 0;
+  margin: 0px 0;
 }
 hr.my-2 { margin: 12px 0 !important; }
 
