@@ -101,7 +101,43 @@ h3 {
   background: rgba(0, 0, 0, 0.18);
 }
 
-/* Cabeçalho */
+/* ========= BLOCO DO AVATAR (maior e centralizado) ========= */
+.contactCard {
+  /* da sua versão: mantive as proporções gerais */
+  display: flex; /* muda de grid para flex coluna */
+  flex-direction: column;
+  align-items: center; /* centraliza avatar e textos */
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  order: 1; /* fica primeiro */
+}
+
+.contactCard__avatar {
+  /* AVATAR BEM MAIOR: usa 80% da largura da sidebar em tela */
+  width: 80%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+/* Metadados do nome/cargo (mantidos) */
+.contactCard__meta {
+  text-align: center;
+}
+.contactCard__name {
+  font-weight: 700;
+  font-size: 1.5rem; /* MANTIDO */
+}
+.contactCard__role {
+  font-size: 0.75rem; /* MANTIDO */
+  opacity: 0.85;
+}
+
+/* ===== Título “Contatos” ENTRE avatar e lista ===== */
 .contactNav__header {
   padding: 0.7rem 1rem 0.5rem;
   font-weight: 700;
@@ -109,46 +145,26 @@ h3 {
   font-family: "Saira Extra Condensed", Arial, sans-serif;
   letter-spacing: 0.02em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 1rem; /* título levemente maior */
+  font-size: 1.5rem; /* MANTIDO */
+  text-align: center;
+  order: 2; /* vem DEPOIS do avatar */
 }
 
-/* Cartão com avatar e nome */
-.contactCard {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 0.5rem;
-  align-items: center;
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-.contactCard__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  object-fit: cover;
-  background: rgba(255, 255, 255, 0.08);
-}
-.contactCard__name {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-.contactCard__role {
-  font-size: 0.75rem;
-  opacity: 0.85;
-}
-
-/* Lista de contatos */
+/* ===== Lista de contatos (ícones e formato mantidos) ===== */
 .contactList {
   list-style: none;
   margin: 0.25rem 0 0;
   padding: 0.5rem 1rem 1rem;
+  order: 3; /* vem por último */
 }
+
 .contactList .fa-li {
   left: -1.3em;
   width: 1.2em;
-  color: #ffd166;
-  font-size: 0.8rem;
+  color: #ffd166; /* mesmo tom da sua versão */
+  font-size: 0.8rem; /* MANTIDO */
 }
+
 .contactList__item {
   margin-bottom: 0.4rem;
   word-wrap: break-word;
@@ -156,37 +172,6 @@ h3 {
 }
 .contactList__item:last-child {
   margin-bottom: 0;
-}
-
-/* ===== Print: manter sidebar no PDF ===== */
-@media print {
-  .contactNav {
-    display: block !important;
-    position: fixed;
-    top: 0mm;
-    left: 0mm;
-    width: 60mm;
-    height: 100vh;
-    background: #062c33;
-    font-size: 8pt; /* fonte menor no PDF */
-    box-shadow: none;
-  }
-  .contactNav::after {
-    width: 0.4mm;
-    background: rgba(0, 0, 0, 0.22);
-  }
-  body {
-    padding-left: calc(60mm + 6mm) !important;
-  }
-  .contactNav__header {
-    padding: 5mm 6mm 4mm;
-  }
-  .contactCard {
-    padding: 4mm 6mm;
-  }
-  .contactList {
-    padding: 3mm 6mm 5mm;
-  }
 }
 
 /* ===== Seções / conteúdo ===== */
@@ -278,29 +263,43 @@ a[href]:after {
    PRINT: manter sidebar no PDF
    =========================== */
 @media print {
-  /* Mostra e posiciona a sidebar dentro da área imprimível (sem margens) */
+  /* Sidebar com alinhamento da sua versão (sem mexer no left) */
   .contactNav {
     display: block !important;
     position: fixed;
-    top: 0mm; /* @page top = 0mm */
-    left: 0mm; /* @page left = 0mm */
-    width: 60mm; /* largura fixa em mm para estabilidade no A4 */
-    height: 100vh; /* altura da página */
+    top: 0mm;
+    left: 0mm; /* mantém seu alinhamento atual */
+    width: 60mm; /* largura fixa */
+    height: 100vh;
     background: #062c33;
-    color: #fff;
-    box-shadow: none; /* sombras não ajudam no print */
+    font-size: 8pt; /* fonte menor no PDF (MANTIDO) */
+    box-shadow: none;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  /* Divisória (print) */
+
   .contactNav::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
     width: 0.4mm;
-    height: 100%;
     background: rgba(0, 0, 0, 0.22);
+  }
+
+  /* Avatar grande também no print: usa a mesma lógica, agora em mm */
+  .contactCard {
+    padding: 4mm 6mm;
+    align-items: center;
+  }
+  .contactCard__avatar {
+    width: 48mm; /* ~80% de 60mm, mantendo proporção */
+    aspect-ratio: 1 / 1;
+  }
+
+  .contactNav__header {
+    padding: 5mm 6mm 4mm;
+    text-align: center;
+  }
+
+  .contactList {
+    padding: 3mm 6mm 5mm;
   }
 
   /* Recuo do conteúdo para não sobrepor a sidebar no print */
