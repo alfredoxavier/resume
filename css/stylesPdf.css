@@ -13,12 +13,12 @@
 .page-break {
   page-break-before: always;
   break-before: page;
-  margin-top: 10mm;  /* espaço no topo da segunda página */
+  margin-top: 10mm; /* espaço no topo da segunda página */
 }
 
-
 /* ===== Corpo e fontes ===== */
-html, body {
+html,
+body {
   background: #fff;
   color: #212529;
   -webkit-print-color-adjust: exact;
@@ -32,75 +32,161 @@ html, body {
 }
 
 /* ===== Títulos ===== */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .heading-condensed,
 .sidebar .title,
 .section h2 {
   font-family: "Saira Extra Condensed", Arial, sans-serif !important; /* títulos */
   font-weight: 700;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   margin: 0 0 4mm 0;
 }
-h1 { font-size: 22pt; }
-h2 { font-size: 16pt; }
-h3 { font-size: 13pt; }
+h1 {
+  font-size: 22pt;
+}
+h2 {
+  font-size: 16pt;
+}
+h3 {
+  font-size: 13pt;
+}
 
-.subheading, .subheading * {
+.subheading,
+.subheading * {
   font-family: "Muli", Arial, sans-serif !important;
   font-weight: 600;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
 }
 
 /* ===== Esconde nav antiga e garante recuo do corpo (tela) ===== */
-#sideNav { display: none !important; }
-@media (min-width: 992px){
-  body { padding-left: 17rem; } /* casa com a largura da contactNav em tela */
+#sideNav {
+  display: none !important;
+}
+@media (min-width: 992px) {
+  body {
+    padding-left: 17rem;
+  } /* casa com a largura da contactNav em tela */
 }
 
 /* ===== Sidebar fixa (tela) ===== */
 .contactNav {
   position: fixed;
-  top: 0; left: 0;
-  width: 17rem; height: 100vh;
-  background: #062c33; /* troque para #bd5d38 se quiser a primária */
+  top: 0;
+  left: 0;
+  width: 17rem;
+  height: 100vh;
+  background: #062c33; /* troque p/ #bd5d38 se preferir */
   color: #fff;
-  display: flex; flex-direction: column;
+  display: flex;
+  flex-direction: column;
   z-index: 1030;
-  box-shadow: 1px 0 0 rgba(0,0,0,.08), 8px 0 18px -12px rgba(0,0,0,.25);
+  box-shadow: 1px 0 0 rgba(0, 0, 0, 0.08), 8px 0 18px -12px rgba(0, 0, 0, 0.25);
+  font-size: 0.95rem; /* fonte menor para toda a sidebar */
+  line-height: 1.3;
 }
-/* Divisória lateral (tela) */
+
+/* Divisória lateral */
 .contactNav::after {
   content: "";
   position: absolute;
-  top: 0; right: 0;
-  width: 1px; height: 100%;
-  background: rgba(0,0,0,.18);
-  pointer-events: none;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.18);
 }
+
+/* Cabeçalho */
 .contactNav__header {
-  padding: 1rem;
+  padding: 0.7rem 1rem 0.5rem;
   font-weight: 700;
   text-transform: uppercase;
   font-family: "Saira Extra Condensed", Arial, sans-serif;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 1rem; /* título levemente maior */
 }
-.contactNav__list {
-  list-style: none;
-  margin: 0; padding: .5rem;
-  overflow: auto;
+
+/* Cartão com avatar e nome */
+.contactCard {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
-.contactItem {
-  display: flex;
-  gap: .5rem;
-  padding: .5rem;
-  border-radius: .5rem;
-  color: #fff;
-  text-decoration: none;
-}
-.contactItem:hover { background: rgba(255,255,255,.15); }
-.contactItem__avatar {
-  width: 2rem; height: 2rem;
+.contactCard__avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
+}
+.contactCard__name {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.contactCard__role {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+/* Lista de contatos */
+.contactList {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0.5rem 1rem 1rem;
+}
+.contactList .fa-li {
+  left: -1.3em;
+  width: 1.2em;
+  color: #ffd166;
+  font-size: 0.8rem;
+}
+.contactList__item {
+  margin-bottom: 0.4rem;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+.contactList__item:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Print: manter sidebar no PDF ===== */
+@media print {
+  .contactNav {
+    display: block !important;
+    position: fixed;
+    top: 0mm;
+    left: 0mm;
+    width: 60mm;
+    height: 100vh;
+    background: #062c33;
+    font-size: 8pt; /* fonte menor no PDF */
+    box-shadow: none;
+  }
+  .contactNav::after {
+    width: 0.4mm;
+    background: rgba(0, 0, 0, 0.22);
+  }
+  body {
+    padding-left: calc(60mm + 6mm) !important;
+  }
+  .contactNav__header {
+    padding: 5mm 6mm 4mm;
+  }
+  .contactCard {
+    padding: 4mm 6mm;
+  }
+  .contactList {
+    padding: 3mm 6mm 5mm;
+  }
 }
 
 /* ===== Seções / conteúdo ===== */
@@ -121,12 +207,20 @@ hr {
   border-top: 1px solid #e5e7eb;
   margin: 0;
 }
-hr.my-2 { margin: 12px 0 !important; }
+hr.my-2 {
+  margin: 12px 0 !important;
+}
 
 /* ===== Listas ===== */
-.fa-ul { margin-left: 1.25em; }
-.fa-ul > li { margin-bottom: .35rem; }
-.fa-ul > li:last-child { margin-bottom: 0; }
+.fa-ul {
+  margin-left: 1.25em;
+}
+.fa-ul > li {
+  margin-bottom: 0.35rem;
+}
+.fa-ul > li:last-child {
+  margin-bottom: 0;
+}
 
 .resume-section-content,
 .resume-section-content p {
@@ -139,7 +233,9 @@ hr.my-2 { margin: 12px 0 !important; }
   line-height: 1.5;
 }
 
-.lead { font-size: 11pt; }
+.lead {
+  font-size: 11pt;
+}
 
 /* ===== Tabelas internas ===== */
 .table {
@@ -148,7 +244,8 @@ hr.my-2 { margin: 12px 0 !important; }
   border: 0.6pt solid #e5e7eb;
   border-radius: 3pt;
 }
-.table th, .table td {
+.table th,
+.table td {
   padding: 2.5mm 3mm;
   border-bottom: 0.4pt solid #eef2f7;
   text-align: left;
@@ -159,7 +256,9 @@ hr.my-2 { margin: 12px 0 !important; }
   background: #f8fafc;
   font-weight: 700;
 }
-.table tr:last-child td { border-bottom: 0; }
+.table tr:last-child td {
+  border-bottom: 0;
+}
 
 /* ===== Links (mostrar URL no PDF) ===== */
 a[href]:after {
@@ -170,7 +269,10 @@ a[href]:after {
 }
 
 /* ===== Quebra de página utilitária ===== */
-.page-break { break-before: page; page-break-before: always; }
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
 
 /* ===========================
    PRINT: manter sidebar no PDF
@@ -180,13 +282,13 @@ a[href]:after {
   .contactNav {
     display: block !important;
     position: fixed;
-    top: 0mm;          /* @page top = 0mm */
-    left: 0mm;         /* @page left = 0mm */
-    width: 60mm;       /* largura fixa em mm para estabilidade no A4 */
-    height: 100vh;     /* altura da página */
+    top: 0mm; /* @page top = 0mm */
+    left: 0mm; /* @page left = 0mm */
+    width: 60mm; /* largura fixa em mm para estabilidade no A4 */
+    height: 100vh; /* altura da página */
     background: #062c33;
     color: #fff;
-    box-shadow: none;  /* sombras não ajudam no print */
+    box-shadow: none; /* sombras não ajudam no print */
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -194,9 +296,11 @@ a[href]:after {
   .contactNav::after {
     content: "";
     position: absolute;
-    top: 0; right: 0;
-    width: 0.4mm; height: 100%;
-    background: rgba(0,0,0,.22);
+    top: 0;
+    right: 0;
+    width: 0.4mm;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.22);
   }
 
   /* Recuo do conteúdo para não sobrepor a sidebar no print */
@@ -213,11 +317,24 @@ a[href]:after {
     margin: 0 !important;
     max-width: none !important;
   }
-  section.resume-section { padding: 6mm 0 6mm !important; }
+  section.resume-section {
+    padding: 6mm 0 6mm !important;
+  }
 
   /* Evita quebras ruins */
-  h2, h3 { page-break-after: avoid; }
-  p, ul, ol, li, table { break-inside: avoid; orphans: 3; widows: 3; }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  p,
+  ul,
+  ol,
+  li,
+  table {
+    break-inside: avoid;
+    orphans: 3;
+    widows: 3;
+  }
 
   /* Se não quiser imprimir URLs depois dos links, descomente: */
   /* a[href]::after { content: none !important; } */

@@ -564,17 +564,33 @@
         </section>
     </div>
 
-    <aside class="contactNav">
+    <aside class="contactNav" aria-label="Informações de contato">
         <div class="contactNav__header">Contatos</div>
-        <ul class="contactNav__list">
-            <li>
-                <a class="contactItem is-active">
-                    <img class="contactItem__avatar" src="assets/img/profile1.jpg" alt="">
-                    <div class="contactItem__meta">
-                        <span class="contactItem__name">Alfredo Xavier</span>
-                        <span class="contactItem__mail">alfredo@exemplo.com</span>
-                    </div>
-                </a>
+
+        <div class="contactCard">
+            <img class="contactCard__avatar" src="assets/img/profile1.jpg" alt="Foto de Alfredo Xavier">
+            <div class="contactCard__meta">
+                <div class="contactCard__name">Alfredo Xavier</div>
+                <div class="contactCard__role">Desenvolvedor Full Stack</div>
+            </div>
+        </div>
+
+        <ul class="fa-ul contactList">
+            <li class="contactList__item">
+                <span class="fa-li"><i class="fas fa-paper-plane"></i></span>
+                alfredoapxavier@gmail.com
+            </li>
+            <li class="contactList__item">
+                <span class="fa-li"><i class="fab fa-linkedin-in"></i></span>
+                linkedin.com/in/alfredoapxavier
+            </li>
+            <li class="contactList__item">
+                <span class="fa-li"><i class="fas fa-phone"></i></span>
+                (16) 99792-8260
+            </li>
+            <li class="contactList__item">
+                <span class="fa-li"><i class="fas fa-home"></i></span>
+                São Carlos
             </li>
         </ul>
     </aside>
